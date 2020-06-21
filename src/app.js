@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const Repository = require('./classes/repository.js');
-const { uuid } = require("uuidv4");
 
 const app = express();
 
@@ -32,7 +31,6 @@ app.post("/repositories", (request, response) => {
 app.put("/repositories/:id", (request, response) => {
   const { body, params } = request;
   const { id } = params
-  const { title, url, techs } = body;
 
   const repositoryId = repositories.findIndex(repository => repository.id === id);
 
@@ -58,7 +56,6 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryId, 1);
   return response.status(204).send();
-  // TODO
 });
 
 app.post("/repositories/:id/like", (request, response) => {
